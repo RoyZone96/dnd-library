@@ -43,10 +43,10 @@ function showMonster(responseJson) {
 
   const actions = responseJson.actions.map(array => `<p>${array.name} - ${array.desc}</p>`)
   
-  const sa = responseJson.special_abilities.map(array => `<p>${array.name} - ${array.desc}<p>`)
+  
   ;
 
-  $('.monster-codex').append(`<ul class="status">
+  $('.monster-codex').append(`<ul class="stats">
         <li><h3>${responseJson.name}</h3></li>
         <li>Armor Class: ${responseJson.armor_class}</li>
         <li>Hit Points: ${responseJson.hit_points}</li>
@@ -56,12 +56,19 @@ function showMonster(responseJson) {
         <li>Wisdom: ${responseJson.wisdom}</li>
         <li>Charisma: ${responseJson.charisma}</li>
         <li>Actions: ${actions.join("")}</li>
-        <li>Special Abilities: ${sa.join("")}</li>
         </ul>`)
+
+  if (responseJson.special_abilities != undefined){
+    const sa = responseJson.special_abilities.map(array => `<p>${array.name} - ${array.desc}<p>`)
+    $('.stats').append(`<li>Special Abilities: ${sa.join("")}</li>`)
+  }
+  else{
+    return null
+  }
   
   if (responseJson.legendary_actions != undefined){
    const la = responseJson.legendary_actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
-  $('.status').append(`<li>Legendary Actions:${la.join("")}</li>`)
+  $('.stats').append(`<li>Legendary Actions:${la.join("")}</li>`)
    }
   else{
     return null
@@ -70,7 +77,6 @@ function showMonster(responseJson) {
 //Run the app
 function runApp() {
   $(document).on('click', '#search', function (event) {
-
     const searchTerm = $('#monster-search').val();
     event.preventDefault();
     console.log(searchTerm)
