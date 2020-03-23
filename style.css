@@ -1,0 +1,47 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+form{
+    padding-bottom: 100px;
+}
+
+#welcome{
+border: 1px solid black;
+width: 500px;
+display: block;
+text-align: center;
+}
+
+
+#main-stage{
+    display: none;
+}
+
+.monster-codex{
+    width: fit-content;
+    border: 1px solid black;
+    width: 100%;
+}
+
+#return-to-welcome{
+    float: right;
+}
+
+li{
+    list-style: none;
+}
+
+
+
+@media only screen and (min-width: 768px){
+    #welcome{
+        position: absolute;
+        right: 500px;
+        bottom: 500px;
+    }
+}
