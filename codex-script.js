@@ -41,11 +41,7 @@ function showMonster(responseJson) {
    console.log(responseJson)
   $('.monster-codex').empty();
 
-  const actions = responseJson.actions.map(array => `<p>${array.name} - ${array.desc}</p>`)
-  
-  
-  ;
-
+  const actions = responseJson.actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
   $('.monster-codex').append(`<ul class="stats">
         <li><h3>${responseJson.name}</h3></li>
         <li>Armor Class: ${responseJson.armor_class}</li>

@@ -14,7 +14,9 @@ form{
 
 #welcome{
 border: 1px solid black;
+background-image: url("images/tome-cover.jpg");
 width: 300px;
+height: 400px;
 display: block;
 text-align: center;
 }
@@ -26,7 +28,7 @@ text-align: center;
 
 .monster-codex{
     width: fit-content;
-    border: 1px solid black;
+    background-image: url("images/parchment.jpg");
     width: 100%;
 }
 
@@ -43,6 +45,7 @@ li{
 @media only screen and (min-width: 768px){
     #welcome{
         width: 500px;
+        height: 700px;
         position: fixed;
         right: 500px;
         bottom: 500px;
