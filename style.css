@@ -14,11 +14,12 @@ form{
 
 #welcome{
 border: 1px solid black;
-background-image: url("images/tome-cover.jpg");
+background-image: url("images/tome-cover.jpg") no-repeat center center fixed;
 width: 300px;
 height: 400px;
 display: block;
 text-align: center;
+color: white;
 }
 
 
