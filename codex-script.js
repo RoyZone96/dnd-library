@@ -39,7 +39,7 @@ function getSpell(searchSpell) {
 function showSpell(responseJson){
   $('.codex').empty();
   console.log(responseJson)
-  
+
   $('.codex').append(`<ul class="status">
   <li><h3>${responseJson.name}</h3></li>
   <li>${responseJson.desc}</li>
