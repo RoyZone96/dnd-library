@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DnD Digital Dictionary</title>
+	<title>DnD Monster Dictionary</title>
 	<link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -17,27 +17,29 @@
     <div id="search-banner">
       <form class="search-set">
         <label for="monster-search">Search Monster</label>
-        <input type="text" placeholder="Lorem Ipsum" id="monster-search">
+        <input type="text" placeholder="Aboleth" id="monster-search">
 
          <input type="button" value="Search Monster" id="search-monster">
         
         
         <label for="spell-search">Search Spells</label>
-        <input type="text" id="search-spell-input" placeholder="Lorem Ipsum">
+        <input type="text" id="search-spell-input" placeholder="Acid Arrow">
          <input type="button" value="Search Spell" id="search-spell-button">
 
-        <input type="button" value="Logout" id="return-to-welcome">
-
-      
+        
       </form>
     </div>
+  
+    <div id="error-message"></div>
     <div class="codex">
-      <p id="error-message"></p>
     </div>
   </main>
+  <footer class= "utility">
+    <input type="button" value="Logout" id="return-to-welcome">
+  </footer>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-  <script src="codex-script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

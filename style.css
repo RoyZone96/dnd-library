@@ -3,20 +3,48 @@
 }
 
 html{
-    font-family: fantasy
+    font-family: fantasy;
+    background: rgba(0, 0, 0, 0) url("images/library.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
-
 form{
     padding-bottom: 100px;
+    display: block
+}
+
+#search-banner{
+  margin-top: 50px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center
+}
+
+
+label{
+  color: black;
+  display: block;
+  margin: 10px auto
 }
 
 #welcome{
 border: 1px solid black;
-width: 500px;
+width: 400px;
+height: 300px;
 display: block;
+color: white;
 margin-left: auto;
 margin-right: auto; 
+padding-top: 150px;
 text-align: center;
+background: rgba(0, 0, 0, 0) url("images/magic-book.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 
@@ -25,8 +53,23 @@ text-align: center;
 }
 
 .codex{
-    width: fit-content;
+    width: 70%;
     border: 1px solid black;
+     background: rgba(0, 0, 0, 0) url("images/parchment.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+footer{
+  display: none;
+  position: fixed;
+  bottom: 0
 }
 
 #return-to-welcome{
@@ -34,7 +77,13 @@ text-align: center;
 }
 
 #error-message{
-  color: red
+  color: red;
+  background-color: black;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  /* padding: 10px */
 }
 
 li{
@@ -43,4 +92,9 @@ li{
 
 
 @media only screen and (min-width: 768px){
+  
+  #welcome{
+    width: 600px;
+    height: 600px;
+  }
 }

@@ -2,11 +2,11 @@
 
 
 
-
 //Enter the app
 $('.enter').on('click', function (event) {
   event.preventDefault();
-  $('#main-stage').toggle()
+  $('#main-stage').toggle();
+  $('.utility').toggle();
   $('#welcome').hide()
 });
 
@@ -15,6 +15,9 @@ $('#return-to-welcome').on('click', function (event) {
   event.preventDefault();
   $('#main-stage').toggle();
   $('#welcome').show()
+  $('.utility').toggle()
+  $('.codex').empty()
+   $('#error-message').text("")
 });
 
 
@@ -32,29 +35,35 @@ function getSpell(searchSpell) {
     })
     .then(responseJson => showSpell(responseJson))
     .catch(err => {
+      $('.codex').empty()
       $('#error-message').text(`Something went wrong: ${err.message}`);
     });
 }
 
-function showSpell(responseJson){
-  $('.codex').empty();
+// show spells in the folling format
+function showSpell(responseJson) {
+   $('.codex').empty();
   console.log(responseJson)
-
+   $('#error-message').text("");
   $('.codex').append(`<ul class="status">
   <li><h3>${responseJson.name}</h3></li>
-  <li>${responseJson.desc}</li>
-  <li>${responseJson.range}</li>
-  <li>${responseJson.higher_level}</li>
-  <li>${responseJson.range}</li>
-  <li>${responseJson.duration}</li>
-  <li>${responseJson.casting_time}</li>
-  <li>${responseJson.level}</li>
-  </ul>`)
+ <li>Range: ${responseJson.range}</li> 
+  <li>Duration: ${responseJson.duration}</li>
+ <li>Casting Time: ${responseJson.casting_time}</li>
+ <li> Level: ${responseJson.level}</li>
+ </ul>
+<div class="description">
+<p>${responseJson.desc}</p>
+</div>
+<div class="high-level">
+<p>${responseJson.higher_level}</p>
+</div>
+  `)
 }
 
 
 
-//Get cards from API
+//Get monsters from API
 function getMonster(searchTerm) {
   const searchUrl = `https://www.dnd5eapi.co/api/monsters/${searchTerm}`;
 
@@ -67,20 +76,22 @@ function getMonster(searchTerm) {
     })
     .then(responseJson => showMonster(responseJson))
     .catch(err => {
+      $('.codex').empty();
       $('#error-message').text(`Something went wrong: ${err.message}`);
     });
 }
 
 
-// Show the cards in format
+// Show the monsters in format
 function showMonster(responseJson) {
   console.log(responseJson)
   $('.codex').empty();
+  $('#error-message').text("")
+const actions = responseJson.actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
 
-  const actions = responseJson.actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
-
-  $('.codex').append(`<ul class="status">
-        <li><h3>${responseJson.name}</h3></li>
+  $('.codex').append(`
+        <h3>${responseJson.name}</h3>
+        <ul class="status">
         <li>Armor Class: ${responseJson.armor_class}</li>
         <li>Hit Points: ${responseJson.hit_points}</li>
         <li>Strength: ${responseJson.strength}</li>
@@ -88,41 +99,61 @@ function showMonster(responseJson) {
         <li>Constitution: ${responseJson.constitution}</li>
         <li>Wisdom: ${responseJson.wisdom}</li>
         <li>Charisma: ${responseJson.charisma}</li>
-        <li>Actions: ${actions.join("")}</li>
-        </ul>`)
+        </ul>
+        <div class = "actions">
+        <h4>Actions:</h4>
+        <li>${actions.join("")}</li>
+        </div>
+        `)
 
-        if (responseJson.special_abilities != undefined){
-          const sa = responseJson.special_abilities.map(array => `<p>${array.name} - ${array.desc}<p>`)
-          $('.stats').append(`<li>Special Abilities: ${sa.join("")}</li>`)
-        }
-        else{
-          return null
-        }
-        
-        if (responseJson.legendary_actions != undefined){
-         const la = responseJson.legendary_actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
-        $('.stats').append(`<li>Legendary Actions:${la.join("")}</li>`)
-         }
-        else{
-          return null
-        }
-      }
 
-  
+    if (responseJson.special_abilities != undefined){
+     const sa = responseJson.special_abilities.map(array => `<p>${array.name} - ${array.desc}<p>`);
+    $('.codex').append(`<div class="specials">
+    <h4>Special Abilities:</h4>
+    <li>${sa.join("")}</li>
+    </div>`)
+ }
+   else{
+     return null
+ }
+
+ if (responseJson.legendary_actions != undefined) {
+  const la = responseJson.legendary_actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
+   $('.codex').append(`
+   <div class="legendary"
+   <h4>Legendary Actions:</h4>
+  <li> ${la.join("")}</li>
+  </div>`)
+ }
+   else {
+     return null
+  }
+}
 
 //Run the app
 function runApp() {
   $(document).on('click', '#search-monster', function (event) {
-    const searchTerm = $('#monster-search').val();
-    event.preventDefault();
-    console.log(searchTerm)
-    getMonster(searchTerm);
+   event.preventDefault(); 
+   const searchTerm = $('#monster-search').val();
+    if (searchTerm.length == 0){
+      $('.codex').empty();
+      $('#error-message').text('Please type in a search monster');
+    }
+    else{
+      getMonster(searchTerm.toLowerCase());
+    }
   });
   $(document).on('click', '#search-spell-button', function (event) {
-    const searchSpell = $('#search-spell-input').val();
     event.preventDefault();
-    console.log(searchSpell)    
-    getSpell(searchSpell)
+    const searchSpell = $('#search-spell-input').val();
+    if (searchSpell.length == 0){
+      $('.codex').empty();
+      $('#error-message').text('Please type in a search spell');
+    }
+    else{
+      getSpell(searchSpell.toLowerCase())
+    }
   })
 }
 
