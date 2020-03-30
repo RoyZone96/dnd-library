@@ -24,7 +24,9 @@ $('#return-to-welcome').on('click', function (event) {
 
 //Get spells
 function getSpell(searchSpell) {
-  const searchUrl = `https://www.dnd5eapi.co/api/spells/${searchSpell}`;
+  const searchSpellStr = searchSpell.replace(' ', '-');
+  console.log(searchSpellStr);
+  const searchUrl = `https://www.dnd5eapi.co/api/spells/${searchSpellStr}`;
   console.log(searchUrl)
   fetch(searchUrl)
     .then(response => {
@@ -65,7 +67,8 @@ function showSpell(responseJson) {
 
 //Get monsters from API
 function getMonster(searchTerm) {
-  const searchUrl = `https://www.dnd5eapi.co/api/monsters/${searchTerm}`;
+  const searchMonster = searchTerm.replace(' ', '-')
+  const searchUrl = `https://api.open5e.com/monsters/${searchMonster}`;
 
   fetch(searchUrl)
     .then(response => {
@@ -106,30 +109,23 @@ const actions = responseJson.actions.map(array => `<p>${array.name} - ${array.de
         </div>
         `)
 
-
-    if (responseJson.special_abilities != undefined){
-     const sa = responseJson.special_abilities.map(array => `<p>${array.name} - ${array.desc}<p>`);
-    $('.codex').append(`<div class="specials">
-    <h4>Special Abilities:</h4>
-    <li>${sa.join("")}</li>
-    </div>`)
- }
-   else{
-     return null
- }
-
- if (responseJson.legendary_actions != undefined) {
-  const la = responseJson.legendary_actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
-   $('.codex').append(`
-   <div class="legendary"
-   <h4>Legendary Actions:</h4>
-  <li> ${la.join("")}</li>
-  </div>`)
- }
-   else {
-     return null
-  }
-}
+      if (responseJson.special_abilities){
+          const sa = responseJson.special_abilities.map(array => `<p>${array.name} - ${array.desc}<p>`);
+         $('.codex').append(`<div class="specials">
+         <h4>Special Abilities:</h4>
+         <li>${sa.join("")}</li>
+         </div>`)
+      }
+     
+      if (responseJson.legendary_actions) {
+       const la = responseJson.legendary_actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
+        $('.codex').append(`
+        <div class="legendary"
+        <h4>Legendary Actions:</h4>
+       <li> ${la.join("")}</li>
+       </div>`)
+      }
+     }
 
 //Run the app
 function runApp() {

@@ -25,9 +25,11 @@ form{
 
 
 label{
-  color: black;
+  color: white;
   display: block;
-  margin: 10px auto
+  margin: 10px auto;
+  background-color: black;
+  width: 100px
 }
 
 #welcome{
@@ -45,6 +47,10 @@ background: rgba(0, 0, 0, 0) url("images/magic-book.jpg") no-repeat center cente
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+h1{
+  background-color: black;
 }
 
 
@@ -96,5 +102,10 @@ li{
   #welcome{
     width: 600px;
     height: 600px;
+  }
+
+  form{
+    display: flex;
+    flex-direction: row;
   }
 }
