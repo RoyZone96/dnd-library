@@ -8,9 +8,9 @@
     <h3>Beginning Page:</h3>
         <img src="images/intro-screen.png" alt="intro page"/>
     <h3>Search Idle Page</h3>
-        <img src="images/index-screenshot" alt="Idle page for search"/>
+        <img src="images/index-screenshot.png" alt="Idle page for search"/>
     <h3>Search Result Page: News Section</h3>
-        <img src="images/results-screen" alt="results displayed"/>
+        <img src="images/results-screen.png" alt="results displayed"/>
 <h2>Built With</h2>
     <h3>Front-End</h3>
         <ul>
