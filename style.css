@@ -104,8 +104,10 @@ li{
     height: 600px;
   }
 
+
   form{
     display: flex;
     flex-direction: row;
+    align-items: center;
   }
 }

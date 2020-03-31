@@ -67,7 +67,7 @@ function showSpell(responseJson) {
 
 //Get monsters from API
 function getMonster(searchTerm) {
-  const searchMonster = searchTerm.replace(' ', '-')
+  const searchMonster = searchTerm.replace(/ /g, '-')
   const searchUrl = `https://api.open5e.com/monsters/${searchMonster}`;
 
   fetch(searchUrl)
@@ -80,7 +80,7 @@ function getMonster(searchTerm) {
     .then(responseJson => showMonster(responseJson))
     .catch(err => {
       $('.codex').empty();
-      $('#error-message').text(`Something went wrong: ${err.message}`);
+      $('#error-message').text(`Something went wrong: Please narrow down your search`);
     });
 }
 
@@ -129,6 +129,22 @@ const actions = responseJson.actions.map(array => `<p>${array.name} - ${array.de
 
 //Run the app
 function runApp() {
+  var input = document.getElementById("monster-search");
+  input.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("search-monster").click();
+    }
+  });
+
+  var input = document.getElementById("search-spell-input");
+  input.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("search-spell-button").click();
+    }
+  });
+
   $(document).on('click', '#search-monster', function (event) {
    event.preventDefault(); 
    const searchTerm = $('#monster-search').val();
