@@ -33,4 +33,5 @@
         <li>Will condense the search function to just one bar</li>
         <li>More content added down the line</li>
         <li>Adding a function to change the language of the appended </li>
+        <li>Adding a bookmark function so you can take a look at saved entries in the codex</li>
     </ul>
