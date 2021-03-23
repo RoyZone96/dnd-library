@@ -6,6 +6,7 @@
 $('.enter').on('click', function (event) {
   event.preventDefault();
   $('#main-stage').toggle();
+  $('#search-menu').toggle();
   $('.utility').toggle();
   $('#welcome').hide()
 });
@@ -17,8 +18,71 @@ $('#return-to-welcome').on('click', function (event) {
   $('#welcome').show()
   $('.utility').toggle()
   $('.codex').empty()
-   $('#error-message').text("")
+  $('#error-message').text("")
 });
+
+//changing searches
+// show races
+$('#')
+
+//get races
+function getRace(searchRace) {
+  const searchRaceStr = searchSRace.replace(' ', '-');
+  console.log(searchRaceStr);
+  const searchUrl = `https://api.open5e.com/races/${searchRaceStr}`;
+  console.log(searchUrl)
+  fetch(searchUrl)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
+    })
+    .then(responseJson => showSpell(responseJson))
+    .catch(err => {
+      $('.codex').empty()
+      $('#error-message').text(`Something went wrong: ${err.message}`);
+    });
+}
+
+//show Race
+function showSpell(responseJson) {
+  $('.codex').empty();
+  console.log(responseJson)
+
+  $('#error-message').text("");
+  $('.codex').append(`<ul class="status">
+ <li><h3>${responseJson.name}</h3>
+ <div class="description">
+ <p>${responseJson.desc}</p>
+ </div></li>
+ <li>
+ <p>${responseJson.asi_desc}</p>
+ </li>
+ <li>
+ <div>
+ <p>${responseJson.age}</p> 
+ </div>
+ </li>
+<li><div>
+<p>${responseJson.alignment}</p> 
+</div></li>
+<li>${responseJson.size}</li>
+<div>
+ <p>${responseJson.speed_desc}</p> 
+ </div>
+ <div>
+ <p>${responseJson.languages}</p> 
+ </div>
+ <div>
+ <p>${responseJson.vision}</p> 
+ </div>
+ <div>
+ <p>${responseJson.traits}</p> 
+ </div>
+</ul>
+ `)
+}
 
 
 
@@ -44,9 +108,9 @@ function getSpell(searchSpell) {
 
 // show spells in the folling format
 function showSpell(responseJson) {
-   $('.codex').empty();
+  $('.codex').empty();
   console.log(responseJson)
-   $('#error-message').text("");
+  $('#error-message').text("");
   $('.codex').append(`<ul class="status">
   <li><h3>${responseJson.name}</h3></li>
  <li>Range: ${responseJson.range}</li> 
@@ -90,7 +154,7 @@ function showMonster(responseJson) {
   console.log(responseJson)
   $('.codex').empty();
   $('#error-message').text("")
-const actions = responseJson.actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
+  const actions = responseJson.actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
 
   $('.codex').append(`
         <h3>${responseJson.name}</h3>
@@ -109,26 +173,36 @@ const actions = responseJson.actions.map(array => `<p>${array.name} - ${array.de
         </div>
         `)
 
-      if (responseJson.special_abilities){
-          const sa = responseJson.special_abilities.map(array => `<p>${array.name} - ${array.desc}<p>`);
-         $('.codex').append(`<div class="specials">
+  if (responseJson.special_abilities) {
+    const sa = responseJson.special_abilities.map(array => `<p>${array.name} - ${array.desc}<p>`);
+    $('.codex').append(`<div class="specials">
          <h4>Special Abilities:</h4>
          <li>${sa.join("")}</li>
          </div>`)
-      }
-     
-      if (responseJson.legendary_actions) {
-       const la = responseJson.legendary_actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
-        $('.codex').append(`
+  }
+
+  if (responseJson.legendary_actions) {
+    const la = responseJson.legendary_actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
+    $('.codex').append(`
         <div class="legendary"
         <h4>Legendary Actions:</h4>
        <li> ${la.join("")}</li>
        </div>`)
-      }
-     }
+  }
+}
 
 //Run the app
 function runApp() {
+
+  var input = document.getElementById("race-search");
+  input.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("search-race").click();
+    }
+  });
+ 
+
   var input = document.getElementById("monster-search");
   input.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
@@ -145,25 +219,36 @@ function runApp() {
     }
   });
 
+  $(document).on('click', '#search-race', function (event) {
+    event.preventDefault();
+    const searchTerm = $('#race-search').val();
+    if (searchTerm.length == 0) {
+      $('.codex').empty();
+      $('#error-message').text('Please type in a search race');
+    }
+    else {
+      getMonster(searchTerm.toLowerCase());
+    }
+  });
   $(document).on('click', '#search-monster', function (event) {
-   event.preventDefault(); 
-   const searchTerm = $('#monster-search').val();
-    if (searchTerm.length == 0){
+    event.preventDefault();
+    const searchTerm = $('#monster-search').val();
+    if (searchTerm.length == 0) {
       $('.codex').empty();
       $('#error-message').text('Please type in a search monster');
     }
-    else{
+    else {
       getMonster(searchTerm.toLowerCase());
     }
   });
   $(document).on('click', '#search-spell-button', function (event) {
     event.preventDefault();
     const searchSpell = $('#search-spell-input').val();
-    if (searchSpell.length == 0){
+    if (searchSpell.length == 0) {
       $('.codex').empty();
       $('#error-message').text('Please type in a search spell');
     }
-    else{
+    else {
       getSpell(searchSpell.toLowerCase())
     }
   })

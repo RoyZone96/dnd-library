@@ -2,38 +2,72 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>DnD Monster Dictionary</title>
-	<link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>DnD Monster Dictionary</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
+<header id="search-menu">
+  <div class="topnav">
+    <a class="active" href="#home">Home</a>
+    <a href="#races">Races</a>
+    <a href="#classes">Classes</a>
+    <a href="#backgrounds">Backgrounds</a>
+    <a href="#spells">About</a>
+    <a href="#equipment">Equipment</a>
+    <a href="#magicItems">Magic Items</a>
+    <a href="#monsters">Monsters</a>
+  </div>
+</header>
+
 <body>
-	<section id="welcome">
-		<h1>Step into the wild world of Monsters and Magic</h1>
-		<button class="enter">Enter</button>
+  <section id="welcome">
+    <h1>Step into the wild world of Monsters and Magic</h1>
+    <button class="enter">Enter</button>
   </section>
-  <main id="main-stage">
+  <main id="main-stage">    
     <div id="search-banner">
       <form class="search-set">
-        <label for="monster-search">Search Monster</label>
-        <input type="text" placeholder="Aboleth" id="monster-search">
-         <input type="button" value="Search Monster" id="search-monster">
+        <label for="race-search">Search Monster</label>
+        <input type="text" placeholder="Human" id="race-search">
+        <input type="button" value="Search Race" id="search-race">
+
+        <label for="class-search">Search Class</label>
+        <input type="text" placeholder="Warrior" id="class-search">
+        <input type="button" value="Search Class" id="search-class">
         
+        <label for="background-search">Search Backgrounds</label>
+        <input type="text" placeholder="Acolyte" id="background-search">
+        <input type="button" value="Search Background" id="search-background">
         
         <label for="search-spell-input">Search Spells</label>
         <input type="text" id="search-spell-input" placeholder="Acid Arrow">
-         <input type="button" value="Search Spell" id="search-spell-button">
+        <input type="button" value="Search Spell" id="search-spell-button">
 
+        <label for="monster-search">Search Equipment</label>
+        <input type="text" placeholder="Dagger" id="Equipment-search">
+        <input type="button" value="Search Equipment" id="search-equipment">
         
+        <label for="monster-search">Search Magic Items</label>
+        <input type="text" placeholder="Adamantine Armor" id="magicItem-search">
+        <input type="button" value="Search Magic Item" id="search-magicItem">
+        
+        <label for="monster-search">Search Monster</label>
+        <input type="text" placeholder="Aboleth" id="monster-search">
+        <input type="button" value="Search Monster" id="search-monster">
       </form>
     </div>
-  
+
+    <div class="instructions">
+      <p>Pick a tab above to search for whatever thou desirest</p>
+    </div>
+
     <div id="error-message"></div>
     <div class="codex">
     </div>
   </main>
-  <footer class= "utility">
+  <footer class="utility">
     <input type="button" value="Logout" id="return-to-welcome">
   </footer>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
