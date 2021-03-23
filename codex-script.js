@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 //Enter the app
 $('.enter').on('click', function (event) {
   event.preventDefault();
@@ -27,7 +25,7 @@ $('#')
 
 //get races
 function getRace(searchRace) {
-  const searchRaceStr = searchSRace.replace(' ', '-');
+  const searchRaceStr = searchRace.replace(' ', '-');
   console.log(searchRaceStr);
   const searchUrl = `https://api.open5e.com/races/${searchRaceStr}`;
   console.log(searchUrl)
@@ -85,6 +83,51 @@ function showSpell(responseJson) {
 }
 
 
+//Get Classes
+function getClass(searchClass) {
+  const searchClassStr = searchClass.replace(' ', '-');
+  console.log(searchClassStr);
+  const searchUrl = `https://api.open5e.com/classes/${searchClassStr}`;
+  console.log(searchUrl)
+  fetch(searchUrl)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
+    })
+    .then(responseJson => showSpell(responseJson))
+    .catch(err => {
+      $('.codex').empty()
+      $('#error-message').text(`Something went wrong: ${err.message}`);
+    });
+}
+
+//Show Classes
+function showRace(responseJson) {
+  $('.codex').empty();
+  console.log(responseJson)
+  const archetypes = responseJson.archetypes.map(array => `<p>${array.name} - ${array.desc}</p>`)
+  $('#error-message').text("");
+  $('.codex').append(`<ul class="status">  
+ <li><h3>${responseJson.name}</h3></li>
+ <li>${responseJson.hit_dice}</li>
+ <li>${responseJson.hp_at_1st_level}</li>
+ <li>${responseJson.hp_at_higher_levels}<li>
+</ul>
+<h4>Proficiencies<h4>
+<ul class="proficiencies">
+<li>${responseJson.prof_armor}</li>
+<li>${responseJson.prof_weapons}</li>
+<li>${responseJson.prof_tools}</li>
+<li>${responseJson.prof_saving_throws}</li>
+<li>${responseJson.prof_skills}</li>
+</ul>
+<p>${responseJson.equipment}</p
+<h4>${responseJson.subtypes_name}</h4>
+<li>${archetypes.join("")}</li>
+ `)
+}
 
 //Get spells
 function getSpell(searchSpell) {
@@ -106,7 +149,7 @@ function getSpell(searchSpell) {
     });
 }
 
-// show spells in the folling format
+// show spells in the following format
 function showSpell(responseJson) {
   $('.codex').empty();
   console.log(responseJson)
