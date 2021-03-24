@@ -36,7 +36,7 @@ function getRace(searchRace) {
       }
       throw new Error(response.statusText);
     })
-    .then(responseJson => showSpell(responseJson))
+    .then(responseJson => showRace(responseJson))
     .catch(err => {
       $('.codex').empty()
       $('#error-message').text(`Something went wrong: ${err.message}`);
@@ -44,7 +44,7 @@ function getRace(searchRace) {
 }
 
 //show Race
-function showSpell(responseJson) {
+function showRace(responseJson) {
   $('.codex').empty();
   console.log(responseJson)
 
@@ -96,7 +96,7 @@ function getClass(searchClass) {
       }
       throw new Error(response.statusText);
     })
-    .then(responseJson => showSpell(responseJson))
+    .then(responseJson => showClass(responseJson))
     .catch(err => {
       $('.codex').empty()
       $('#error-message').text(`Something went wrong: ${err.message}`);
@@ -104,7 +104,7 @@ function getClass(searchClass) {
 }
 
 //Show Classes
-function showRace(responseJson) {
+function showClass(responseJson) {
   $('.codex').empty();
   console.log(responseJson)
   const archetypes = responseJson.archetypes.map(array => `<p>${array.name} - ${array.desc}</p>`)
@@ -170,6 +170,43 @@ function showSpell(responseJson) {
   `)
 }
 
+//Get Magic Item from Api
+function getMagicItem(searchMagicItem) {
+  const searchMagicItemStr = searchMagicItem.replace(' ', '-');
+  console.log(searchMagicItemStr);
+  const searchUrl = `https://www.dnd5eapi.co/api/spells/${searchMagicItemStr}`;
+  console.log(searchUrl)
+  fetch(searchUrl)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
+    })
+    .then(responseJson => showMagicItem(responseJson))
+    .catch(err => {
+      $('.codex').empty()
+      $('#error-message').text(`Something went wrong: ${err.message}`);
+    });
+}
+
+//Show Magic Item
+function showMagicItem(responseJson) {
+  $('.codex').empty();
+  console.log(responseJson)
+  $('#error-message').text("");
+  $('.codex').append(`
+  <h3>${responseJson.name}</h3>
+ <p>Type: ${responseJson.type}</p> 
+<p>Rarity: ${responseJson.rarity}</p>
+<div class="description">
+<p>${responseJson.desc}</p>
+</div>
+<div class="attunement">
+<p>${responseJson.requires_attunement}</p>
+</div>
+  `)
+}
 
 
 //Get monsters from API
@@ -244,7 +281,7 @@ function runApp() {
       document.getElementById("search-race").click();
     }
   });
- 
+
 
   var input = document.getElementById("monster-search");
   input.addEventListener("keyup", function (event) {
