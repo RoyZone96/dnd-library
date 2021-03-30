@@ -19,9 +19,6 @@ $('#return-to-welcome').on('click', function (event) {
   $('#error-message').text("")
 });
 
-//changing searches
-// show races
-$('#')
 
 //get races
 function getRace(searchRace) {
@@ -128,6 +125,52 @@ function showClass(responseJson) {
 <li>${archetypes.join("")}</li>
  `)
 }
+
+// //Get Backgrounds
+// function getBackground(searchBackground) {
+//   const searchBackgroundStr = searchBackground.replace(' ', '-');
+//   console.log(searchBackgroundStr);
+//   const searchUrl = `https://www.dnd5eapi.co/api/backgrounds/${searchBackgroundStr}`;
+//   console.log(searchUrl)
+//   fetch(searchUrl)
+//     .then(response => {
+//       if (response.ok) {
+//         return response.json();
+//       }
+//       throw new Error(response.statusText);
+//     })
+//     .then(responseJson => showBackground(responseJson))
+//     .catch(err => {
+//       $('.codex').empty()
+//       $('#error-message').text(`Something went wrong: ${err.message}`);
+//     });
+// }
+
+// //Show Backgrounds
+// function showBackground(responseJson) {
+//   $('.codex').empty();
+//   console.log(responseJson)
+//   $('#error-message').text("");
+//   const starting_proficiencies = responseJson.starting_proficiencies.map(array => `<p>${array.name}</p>`);
+//   const starting_equipment = responseJson.starting_equipment.map(array => )
+
+//   $('.codex').append(`<ul class="status">
+//   <h3>${responseJson.name}</h3>
+//   <p> Starting Proficiencies </p>
+//   <li>${starting_proficiencies.join("")}</li>
+//   <li>Duration: ${responseJson.duration}</li>
+//  <li>Casting Time: ${responseJson.casting_time}</li>
+//  <li> Level: ${responseJson.level}</li>
+//  </ul>
+// <div class="description">
+// <p>${responseJson.desc}</p>
+// </div>
+// <div class="high-level">
+// <p>${responseJson.higher_level}</p>
+// </div>
+//   `)
+// }
+
 
 //Get spells
 function getSpell(searchSpell) {
@@ -274,6 +317,29 @@ function showMonster(responseJson) {
 //Run the app
 function runApp() {
 
+  //changing searches
+  function openSearch(event, searchName) {
+    // Declare all variables
+    var i, tab_search, tablinks;
+  
+    // Get all elements with class="tabcontent" and hide them
+    tab_search = document.getElementsByClassName("tab_search");
+    for (i = 0; i < tab_search.length; i++) {
+      tab_search[i].style.display = "none";
+    }
+  
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+  
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(searchName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+
   var input = document.getElementById("race-search");
   input.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
@@ -282,6 +348,21 @@ function runApp() {
     }
   });
 
+  var input = document.getElementById("class-search");
+  input.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("class-search").click();
+    }
+  });
+
+  var input = document.getElementById("magicItem-search");
+  input.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("magicItem-search").click();
+    }
+  });
 
   var input = document.getElementById("monster-search");
   input.addEventListener("keyup", function (event) {
