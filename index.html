@@ -6,16 +6,17 @@
   <meta name="viewport" content="width=device-width">
   <title>DnD Monster Dictionary</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
+ 
 </head>
 
 <header id="search-menu">
   <div class="tab">
-    <button class="tablinks" onclick="openSearch(event, 'Home')">Home</button>
-    <button class="tablinks" onclick="openSearch(event, 'Races')">Races</button>
-    <button class="tablinks" onclick="openSearch(event, 'Classes')">Classes</button>
-    <button class="tablinks" onclick="openSearch(event, 'Spells')">Spells</button>
-    <button class="tablinks" onclick="openSearch(event, 'Magic Items')">Magic Items</button>
-    <button class="tablinks" onclick="openSearch(event, 'Monsters')">Monsters</button>
+    <button class="tablinks" onclick="openSearch(event, 'home')">Home</button>
+    <button class="tablinks" onclick="openSearch(event, 'races')">Races</button>
+    <button class="tablinks" onclick="openSearch(event, 'classes')">Classes</button>
+    <button class="tablinks" onclick="openSearch(event, 'spells')">Spells</button>
+    <button class="tablinks" onclick="openSearch(event, 'magic_items')">Magic Items</button>
+    <button class="tablinks" onclick="openSearch(event, 'monsters')">Monsters</button>
   </div>
 </header>
 
@@ -25,40 +26,42 @@
     <button class="enter">Enter</button>
   </section>
   <main id="main-stage">
+    <div id="home" class="instructions">
+      <p>Pick a tab above to search for whatever thou desirest</p>
+    </div>
     <div id="search-banner">
       <form class="search-set">
         <div id="races" class="tab_search">
           <label for="race-search">Search Race</label>
-          <input type="text" placeholder="Human" id="race-search">
+          <input type="text" value="" placeholder="Human" id="race-search">
           <input type="button" value="Search Race" id="search-race">
         </div>
 
         <div id="classes" class="tab_search">
           <label for="class-search">Search Class</label>
-          <input type="text" placeholder="Warrior" id="class-search">
+          <input type="text" value="" placeholder="Warrior" id="class-search">
           <input type="button" value="Search Class" id="search-class">
         </div>
-        
+
         <div id="spells" class="tab_search">
           <label for="search-spell-input">Search Spells</label>
-          <input type="text" id="search-spell-input" placeholder="Acid Arrow">
+          <input type="text" value="" id="search-spell-input" placeholder="Acid Arrow">
           <input type="button" value="Search Spell" id="search-spell-button">
         </div>
+
         <div id="magic_items" class="tab_search">
           <label for="magicItem-search">Search Magic Items</label>
-          <input type="text" placeholder="Adamantine Armor" id="magicItem-search">
+          <input type="text" value="" placeholder="Adamantine Armor" id="magicItem-search">
           <input type="button" value="Search Magic Item" id="search-magicItem">
         </div>
+
         <div id="monsters" class="tab_search">
           <label for="monster-search">Search Monster</label>
-          <input type="text" placeholder="Aboleth" id="monster-search">
+          <input type="text" value="" placeholder="Aboleth" id="monster-search">
           <input type="button" value="Search Monster" id="search-monster">
         </div>
-      </form>
-    </div>
 
-    <div class="instructions">
-      <p>Pick a tab above to search for whatever thou desirest</p>
+      </form>
     </div>
 
     <div id="error-message"></div>
@@ -69,8 +72,8 @@
     <input type="button" value="Logout" id="return-to-welcome">
   </footer>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-  <script src="codex-script.js"></script>
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+<script src="codex-script.js"></script>
 </body>
 
 </html>

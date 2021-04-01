@@ -47,6 +47,16 @@ html {
   border-top: none;
 }
 
+.tab_search {
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
 form {
   padding-bottom: 100px;
   display: block

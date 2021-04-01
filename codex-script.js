@@ -19,6 +19,28 @@ $('#return-to-welcome').on('click', function (event) {
   $('#error-message').text("")
 });
 
+//changing searches
+function openSearch(event, searchName) {
+  // Declare all variables
+  var i, tab_search, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tab_search = document.getElementsByClassName("tab_search");
+  for (i = 0; i < tab_search.length; i++) {
+    tab_search[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(searchName).style.display = "block";
+  event.currentTarget.className += " active";
+}
+
 
 //get races
 function getRace(searchRace) {
@@ -317,29 +339,6 @@ function showMonster(responseJson) {
 //Run the app
 function runApp() {
 
-  //changing searches
-  function openSearch(event, searchName) {
-    // Declare all variables
-    var i, tab_search, tablinks;
-  
-    // Get all elements with class="tabcontent" and hide them
-    tab_search = document.getElementsByClassName("tab_search");
-    for (i = 0; i < tab_search.length; i++) {
-      tab_search[i].style.display = "none";
-    }
-  
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-  
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(searchName).style.display = "block";
-    evt.currentTarget.className += " active";
-  }
-
-
   var input = document.getElementById("race-search");
   input.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
@@ -388,7 +387,29 @@ function runApp() {
       $('#error-message').text('Please type in a search race');
     }
     else {
-      getMonster(searchTerm.toLowerCase());
+      getRace(searchTerm.toLowerCase());
+    }
+  });
+  $(document).on('click', '#search-class', function (event) {
+    event.preventDefault();
+    const searchTerm = $('#class-search').val();
+    if (searchTerm.length == 0) {
+      $('.codex').empty();
+      $('#error-message').text('Please type in a search race');
+    }
+    else {
+      getClass(searchTerm.toLowerCase());
+    }
+  });
+  $(document).on('click', '#search-magicItem', function (event) {
+    event.preventDefault();
+    const searchTerm = $('#magicItem-search').val();
+    if (searchTerm.length == 0) {
+      $('.codex').empty();
+      $('#error-message').text('Please type in a search race');
+    }
+    else {
+      getMagicItem(searchTerm.toLowerCase());
     }
   });
   $(document).on('click', '#search-monster', function (event) {
