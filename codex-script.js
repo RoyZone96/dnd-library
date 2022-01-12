@@ -68,11 +68,14 @@ function showRace(responseJson) {
   console.log(responseJson)
 
   $('#error-message').text("");
-  $('.codex').append(`<ul class="status">
- <li><h3>${responseJson.name}</h3>
+  const asi_values = responseJson.asi.map(array => `<p>${array.attributes} - ${array.value}</p>`);
+
+  $('.codex').append(`
+ <h3>${responseJson.name}</h3>
  <div class="description">
  <p>${responseJson.desc}</p>
- </div></li>
+ </div>
+ <ul class="status">
  <li>
  <p>${responseJson.asi_desc}</p>
  </li>
@@ -99,6 +102,24 @@ function showRace(responseJson) {
  </div>
 </ul>
  `)
+
+ if (responseJson.subraces) {
+  const subraces = responseJson.subraces.map(array => `
+  <h5>${array.name}</h5>  
+  <p>${array.desc}</p>
+  <ul class="status">
+    <li>${array.asi_desc}
+    <li>${array.traits}
+  </ul>
+
+  `);
+  $('.codex').append(`
+      <div class="subraces"
+      <h4>Subraces:</h4>
+     <li> ${subraces.join("")}</li>
+     </div>`)
+}
+
 }
 
 
