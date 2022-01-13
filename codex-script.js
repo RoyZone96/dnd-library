@@ -103,8 +103,8 @@ function showRace(responseJson) {
 </ul>
  `)
 
- if (responseJson.subraces) {
-  const subraces = responseJson.subraces.map(array => `
+  if (responseJson.subraces) {
+    const subraces = responseJson.subraces.map(array => `
   <h5>${array.name}</h5>  
   <p>${array.desc}</p>
   <ul class="status">
@@ -113,12 +113,12 @@ function showRace(responseJson) {
   </ul>
 
   `);
-  $('.codex').append(`
+    $('.codex').append(`
       <div class="subraces"
       <h4>Subraces:</h4>
      <li> ${subraces.join("")}</li>
      </div>`)
-}
+  }
 
 }
 
@@ -149,20 +149,22 @@ function showClass(responseJson) {
   console.log(responseJson)
   const archetypes = responseJson.archetypes.map(array => `<p>${array.name} - ${array.desc}</p>`)
   $('#error-message').text("");
-  $('.codex').append(`<ul class="status">  
- <li><h3>${responseJson.name}</h3></li>
- <li>${responseJson.hit_dice}</li>
- <li>${responseJson.hp_at_1st_level}</li>
- <li>${responseJson.hp_at_higher_levels}<li>
-</ul>
-<h4>Proficiencies<h4>
-<ul class="proficiencies">
-<li>${responseJson.prof_armor}</li>
-<li>${responseJson.prof_weapons}</li>
-<li>${responseJson.prof_tools}</li>
-<li>${responseJson.prof_saving_throws}</li>
-<li>${responseJson.prof_skills}</li>
-</ul>
+  $('.codex').append(`
+  <h3>${responseJson.name}</h3>
+    <ul class="status">  
+      <li>${responseJson.hit_dice}</li>
+      <li>${responseJson.hp_at_1st_level}</li>
+      <li>${responseJson.hp_at_higher_levels}<li>
+    </ul>
+  <h4>Proficiencies<h4>
+    <ul class="proficiencies">
+      <li>${responseJson.prof_armor}</li>
+      <li>${responseJson.prof_weapons}</li>
+      <li>${responseJson.prof_tools}</li>
+      <li>${responseJson.prof_saving_throws}</li>
+      <li>${responseJson.prof_skills}</li>
+      <li>${responseJson.spellcasting_ability}</li>
+    </ul>
 <p>${responseJson.equipment}</p
 <h4>${responseJson.subtypes_name}</h4>
 <li>${archetypes.join("")}</li>
