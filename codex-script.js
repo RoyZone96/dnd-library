@@ -411,8 +411,7 @@ function runApp() {
     if (searchTerm.length == 0) {
       $('.codex').empty();
       $('#error-message').text('Please type in a search race');
-    }
-    else {
+    } else {
       getRace(searchTerm.toLowerCase());
     }
   });
@@ -422,8 +421,7 @@ function runApp() {
     if (searchTerm.length == 0) {
       $('.codex').empty();
       $('#error-message').text('Please type in a search race');
-    }
-    else {
+    } else {
       getClass(searchTerm.toLowerCase());
     }
   });
@@ -433,8 +431,7 @@ function runApp() {
     if (searchTerm.length == 0) {
       $('.codex').empty();
       $('#error-message').text('Please type in a search race');
-    }
-    else {
+    } else {
       getMagicItem(searchTerm.toLowerCase());
     }
   });
@@ -444,8 +441,7 @@ function runApp() {
     if (searchTerm.length == 0) {
       $('.codex').empty();
       $('#error-message').text('Please type in a search monster');
-    }
-    else {
+    } else {
       getMonster(searchTerm.toLowerCase());
     }
   });
@@ -455,8 +451,7 @@ function runApp() {
     if (searchSpell.length == 0) {
       $('.codex').empty();
       $('#error-message').text('Please type in a search spell');
-    }
-    else {
+    } else {
       getSpell(searchSpell.toLowerCase())
     }
   })

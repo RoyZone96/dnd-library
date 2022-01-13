@@ -16,7 +16,7 @@ html {
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: black;
-  
+
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -34,7 +34,7 @@ html {
 /* Change background color of buttons on hover */
 .tab button:hover {
   background-color: white;
-  color:black;
+  color: black;
 }
 
 /* Create an active/current tablink class */
@@ -51,13 +51,19 @@ html {
 }
 
 .tab_search {
-  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+  animation: fadeEffect 1s;
+  /* Fading effect takes 1 second */
 }
 
 /* Go from zero to full opacity */
 @keyframes fadeEffect {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 form {
@@ -65,7 +71,7 @@ form {
   display: block
 }
 
-#home{
+#home {
   text-align: center;
 }
 
@@ -105,7 +111,7 @@ label {
 }
 
 
-.intro{
+.intro {
   background-color: black;
 }
 
@@ -117,7 +123,7 @@ label {
   display: none;
 }
 
-.forward{
+.forward {
   width: 70%;
   background: rgba(0, 0, 0, 0) url("images/parchment.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -173,6 +179,7 @@ li {
     width: 600px;
     height: 600px;
   }
+
   form {
     display: flex;
     flex-direction: column;
