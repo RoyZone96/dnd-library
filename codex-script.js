@@ -71,7 +71,7 @@ function showRace(responseJson) {
   const asi_values = responseJson.asi.map(array => `<p>${array.attributes} - ${array.value}</p>`);
 
   $('.codex').append(`
- <h3>${responseJson.name}</h3>
+ <h1>${responseJson.name}</h1>
  <div class="description">
  <p>${responseJson.desc}</p>
  </div>
@@ -105,7 +105,7 @@ function showRace(responseJson) {
 
   if (responseJson.subraces) {
     const subraces = responseJson.subraces.map(array => `
-  <h5>${array.name}</h5>  
+  <h3>${array.name}</h3>  
   <p>${array.desc}</p>
   <ul class="status">
     <li>${array.asi_desc}
@@ -115,7 +115,7 @@ function showRace(responseJson) {
   `);
     $('.codex').append(`
       <div class="subraces"
-      <h4>Subraces:</h4>
+      <h3>Subraces:</h3>
      <li> ${subraces.join("")}</li>
      </div>`)
   }
@@ -150,13 +150,13 @@ function showClass(responseJson) {
   const archetypes = responseJson.archetypes.map(array => `<p>${array.name} - ${array.desc}</p>`)
   $('#error-message').text("");
   $('.codex').append(`
-  <h3>${responseJson.name}</h3>
+  <h1>${responseJson.name}</h1>
     <ul class="status">  
       <li>${responseJson.hit_dice}</li>
       <li>${responseJson.hp_at_1st_level}</li>
       <li>${responseJson.hp_at_higher_levels}<li>
     </ul>
-  <h4>Proficiencies<h4>
+  <h2>Proficiencies<h2>
     <ul class="proficiencies">
       <li>${responseJson.prof_armor}</li>
       <li>${responseJson.prof_weapons}</li>
@@ -166,7 +166,7 @@ function showClass(responseJson) {
       <li>${responseJson.spellcasting_ability}</li>
     </ul>
 <p>${responseJson.equipment}</p
-<h4>${responseJson.subtypes_name}</h4>
+<h3>${responseJson.subtypes_name}</h3>
 <li>${archetypes.join("")}</li>
  `)
 }
@@ -242,13 +242,16 @@ function showSpell(responseJson) {
   $('.codex').empty();
   console.log(responseJson)
   $('#error-message').text("");
-  $('.codex').append(`<ul class="status">
-  <li><h3>${responseJson.name}</h3></li>
- <li>Range: ${responseJson.range}</li> 
-  <li>Duration: ${responseJson.duration}</li>
- <li>Casting Time: ${responseJson.casting_time}</li>
- <li> Level: ${responseJson.level}</li>
- </ul>
+  $('.codex').append(`<h1>${responseJson.name}</h1>
+      </<ul class="status">
+      <li>School: ${responseJson.school}</li>
+      <li>Material: ${responseJson.material}</li>
+      <li>Ritual: ${responseJson.concentration}</li>
+      <li>Range: ${responseJson.range}</li> 
+      <li>Duration: ${responseJson.duration}</li>
+      <li>Casting Time: ${responseJson.casting_time}</li>
+      <li> Level: ${responseJson.level}</li>
+      </ul>
 <div class="description">
 <p>${responseJson.desc}</p>
 </div>
@@ -284,15 +287,15 @@ function showMagicItem(responseJson) {
   console.log(responseJson)
   $('#error-message').text("");
   $('.codex').append(`
-  <h3>${responseJson.name}</h3>
- <p>Type: ${responseJson.type}</p> 
-<p>Rarity: ${responseJson.rarity}</p>
-<div class="description">
-<p>${responseJson.desc}</p>
-</div>
-<div class="attunement">
-<p>${responseJson.requires_attunement}</p>
-</div>
+  <h1>${responseJson.name}</h1>
+  <p>Type: ${responseJson.type}</p> 
+  <p>Rarity: ${responseJson.rarity}</p>
+    <div class="description">
+      <p>${responseJson.desc}</p>
+    </div>
+    <div class="attunement">
+      <p>${responseJson.requires_attunement}</p>
+    </div>
   `)
 }
 
@@ -325,7 +328,7 @@ function showMonster(responseJson) {
   const actions = responseJson.actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
 
   $('.codex').append(`
-        <h3>${responseJson.name}</h3>
+        <h1>${responseJson.name}</h1>
         <ul class="status">
         <li>Armor Class: ${responseJson.armor_class}</li>
         <li>Hit Points: ${responseJson.hit_points}</li>
@@ -336,7 +339,7 @@ function showMonster(responseJson) {
         <li>Charisma: ${responseJson.charisma}</li>
         </ul>
         <div class = "actions">
-        <h4>Actions:</h4>
+        <h2>Actions:</h2>
         <li>${actions.join("")}</li>
         </div>
         `)
@@ -344,7 +347,7 @@ function showMonster(responseJson) {
   if (responseJson.special_abilities) {
     const sa = responseJson.special_abilities.map(array => `<p>${array.name} - ${array.desc}<p>`);
     $('.codex').append(`<div class="specials">
-         <h4>Special Abilities:</h4>
+         <h2>Special Abilities:</h2>
          <li>${sa.join("")}</li>
          </div>`)
   }
@@ -353,7 +356,7 @@ function showMonster(responseJson) {
     const la = responseJson.legendary_actions.map(array => `<p>${array.name} - ${array.desc}</p>`);
     $('.codex').append(`
         <div class="legendary"
-        <h4>Legendary Actions:</h4>
+        <h2>Legendary Actions:</h2>
        <li> ${la.join("")}</li>
        </div>`)
   }
